@@ -35,6 +35,14 @@ python app.py
 
 Then open the local server in your browser at `http://127.0.0.1:5000`.
 
+## Deploy the frontend on Netlify
+
+This project can publish the frontend as a static site on Netlify.
+
+1. Set the backend URL in `index.html` by filling the `api-base-url` meta tag with your Flask app URL.
+2. Deploy the repository root to Netlify with the included `netlify.toml`.
+3. If you only want the static UI, Netlify can host `index.html` directly, but the prediction button still needs a live Flask backend.
+
 ## Notes
 
 - Latest recorded test accuracy: 92.20%.
