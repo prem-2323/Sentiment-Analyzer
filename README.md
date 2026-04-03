@@ -37,5 +37,6 @@ Then open the local server in your browser at `http://127.0.0.1:5000`.
 
 ## Notes
 
+- Latest recorded test accuracy: 92.20%.
 - The model saves as `model.h5`, which is a legacy HDF5 format but works with this project.
 - The TensorFlow GPU warning on native Windows is expected with modern TensorFlow versions and does not block CPU training.
