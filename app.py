@@ -1,11 +1,14 @@
 from pathlib import Path
 import pickle
+import os
 
 from flask import Flask, jsonify, request, send_from_directory
+from flask_cors import CORS
 from keras.models import load_model
-from tensorflow.keras.preprocessing.sequence import pad_sequences
+from keras.utils import pad_sequences
 
 app = Flask(__name__)
+CORS(app)
 
 BASE_DIR = Path(__file__).resolve().parent
 MODEL_PATH = BASE_DIR / "model.h5"
@@ -48,4 +51,6 @@ def predict():
     })
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    debug = os.environ.get("FLASK_DEBUG", "0") == "1"
+    app.run(host="0.0.0.0", port=port, debug=debug)

@@ -37,11 +37,12 @@ Then open the local server in your browser at `http://127.0.0.1:5000`.
 
 ## Deploy the frontend on Netlify
 
-This project can publish the frontend as a static site on Netlify.
+This project can publish the frontend as a static site on Netlify and the backend on Render.
 
-1. Set the backend URL in `index.html` by filling the `api-base-url` meta tag with your Flask app URL.
-2. Deploy the repository root to Netlify with the included `netlify.toml`.
-3. If you only want the static UI, Netlify can host `index.html` directly, but the prediction button still needs a live Flask backend.
+1. Deploy the backend to Render using `render.yaml`.
+2. Replace `https://YOUR-RENDER-SERVICE.onrender.com` in `netlify.toml` with your real Render service URL.
+3. Deploy the repository root to Netlify with the included `netlify.toml`.
+4. Netlify will proxy `/api/predict` to the Render backend, so the frontend and backend stay connected.
 
 ## Notes
 

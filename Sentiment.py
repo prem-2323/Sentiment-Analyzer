@@ -9,8 +9,8 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 from keras import layers, models
-from tensorflow.keras.preprocessing.sequence import pad_sequences
-from tensorflow.keras.preprocessing.text import Tokenizer
+from keras.utils import pad_sequences
+from keras.src.legacy.preprocessing.text import Tokenizer
 
 BASE_DIR = Path(__file__).resolve().parent
 MODEL_PATH = BASE_DIR / "model.h5"

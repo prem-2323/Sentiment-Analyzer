@@ -3,7 +3,6 @@
 <head>
     <title>Twitter Sentiment Analyzer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="api-base-url" content="" />
     <style>
         :root {
             --bg: #081120;
@@ -163,8 +162,6 @@
     </main>
 
     <script>
-        const apiBaseUrl = document.querySelector('meta[name="api-base-url"]').content.trim();
-
         async function analyze() {
             const button = document.getElementById("analyzeBtn");
             const text = document.getElementById("tweet").value;
@@ -179,8 +176,7 @@
             result.textContent = "Analyzing...";
 
             try {
-                const endpoint = apiBaseUrl ? apiBaseUrl.replace(/\/$/, "") + "/predict" : "/predict";
-                const response = await fetch(endpoint, {
+                const response = await fetch("/api/predict", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
