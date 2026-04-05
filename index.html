@@ -3,6 +3,7 @@
 <head>
     <title>Twitter Sentiment Analyzer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%2338bdf8'>📊</text></svg>" />
     <style>
         :root {
             --bg: #081120;
@@ -176,7 +177,7 @@
             result.textContent = "Analyzing...";
 
             try {
-                const response = await fetch("/api/predict", {
+                const response = await fetch("/predict", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
