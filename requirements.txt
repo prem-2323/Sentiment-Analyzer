@@ -1,9 +1,8 @@
-flask
-flask-cors
-tensorflow
-keras
-pandas
-numpy
-matplotlib
-gunicorn
-pickle5
+flask==3.0.3
+flask-cors==4.0.1
+tensorflow==2.16.1
+keras==3.3.3
+pandas==2.2.2
+numpy==1.26.4
+matplotlib==3.8.4
+gunicorn==22.0.0
