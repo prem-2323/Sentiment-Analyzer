@@ -4,8 +4,9 @@ import os
 
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
-from keras.models import load_model
-from keras.utils import pad_sequences
+import tensorflow as tf
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 app = Flask(__name__)
 CORS(app)
@@ -14,13 +15,22 @@ BASE_DIR = Path(__file__).resolve().parent
 MODEL_PATH = BASE_DIR / "model.h5"
 TOKENIZER_PATH = BASE_DIR / "tokenizer.pkl"
 
+
+class PatchedEmbedding(tf.keras.layers.Embedding):
+    def __init__(self, *args, quantization_config=None, **kwargs):
+        super().__init__(*args, **kwargs)
+
 if not MODEL_PATH.exists() or not TOKENIZER_PATH.exists():
     raise FileNotFoundError(
         "Missing model artifacts. Run Sentiment.py first to create model.h5 and tokenizer.pkl."
     )
 
 # Load model & tokenizer
-model = load_model(MODEL_PATH)
+model = load_model(
+    MODEL_PATH,
+    compile=False,
+    custom_objects={"Embedding": PatchedEmbedding},
+)
 
 with open(TOKENIZER_PATH, "rb") as file:
     tokenizer = pickle.load(file)
